@@ -65,14 +65,53 @@ Open `http://localhost:3000` in your browser.
 | 周一 | 2 | 日式咖喱 → 鸡肉、土豆、胡萝卜、洋葱、咖喱块 |
 ```
 
+## Build as a Mac app (.dmg)
+
+You can package the project into a native macOS app using Electron.
+
+**Prerequisites:** complete the [Setup](#setup) section first.
+
+```bash
+# Install Playwright browsers (needed for Stagehand automation)
+npx playwright install chromium
+
+# Build the universal .dmg (works on both Apple Silicon and Intel)
+npm run build:mac
+```
+
+The output file will be at:
+
+```
+dist/Shopping Agent-1.0.0-universal.dmg
+```
+
+Open the `.dmg`, drag **Shopping Agent** to `/Applications`, and launch it like any Mac app.
+
+**API key for the packaged app**
+
+The `.env` file is not bundled for security. Create it once at:
+
+```
+~/Library/Application Support/Shopping Agent/.env
+```
+
+```
+GEMINI_API_KEY=your_key_here
+```
+
+If the file is missing, the app will show a dialog on launch with the exact path.
+
+> The Playwright browser (used to automate Morrisons) opens as a separate Chrome window alongside the app — this is expected. You log in to Morrisons there, then click **继续** in the app to start shopping.
+
 ## Project structure
 
 ```
 .
-├── server.js        # Express server — Gemini extraction, SSE log stream
-├── agent.js         # Stagehand agent — URL navigation + act() Add clicks
+├── electron-main.js  # Electron entry — starts Express server, opens app window
+├── server.js         # Express server — Gemini extraction, SSE log stream
+├── agent.js          # Stagehand agent — URL navigation + act() Add clicks
 └── public/
-    ├── index.html   # Notion-style UI
-    ├── style.css    # Notion dark theme
-    └── app.js       # Frontend logic (SSE, preview table, status)
+    ├── index.html    # Notion-style UI
+    ├── style.css     # Notion dark theme
+    └── app.js        # Frontend logic (SSE, preview table, status)
 ```
