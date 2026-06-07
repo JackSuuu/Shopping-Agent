@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>购物 Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Top bar ── -->
+  <nav class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-breadcrumb">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        Morrisons 购物 Agent
+      </span>
+    </div>
+    <div class="topbar-right">
+      <span class="tech-pill">Gemini</span>
+      <span class="tech-pill">Stagehand</span>
+    </div>
+  </nav>
+
+  <!-- ── Page ── -->
+  <div class="page">
+
+    <!-- Page title block -->
+    <div class="page-header">
+      <div class="page-icon">🛒</div>
+      <h1 class="page-title">本周购物清单</h1>
+      <p class="page-desc">粘贴 Markdown 菜单表格，AI 自动提取食材并在 Morrisons 完成购物</p>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Two-column content -->
+    <div class="columns">
+
+      <!-- ── Left: Input ── -->
+      <div class="col">
+
+        <div class="block-label">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+          菜单输入
+        </div>
+
+        <details class="callout callout-gray">
+          <summary>查看示例格式</summary>
+          <pre class="code-block">| 本周菜单 | 在家人数 | 菜单 |
+| --- | --- | --- |
+| 周日 | 2 | 卤鸡腿 → 鸡腿，鸡蛋，葱，姜，蒜 |
+| 周一 | 2 | 日式咖喱 → 鸡肉、土豆、胡萝卜 |</pre>
+        </details>
+
+        <textarea
+          id="markdownInput"
+          class="editor"
+          placeholder="在此粘贴 Markdown 表格..."
+          spellcheck="false"
+        ></textarea>
+
+        <!-- AI-extracted ingredient preview -->
+        <div id="previewSection" class="ingredient-block" style="display:none">
+          <div class="ingredient-header">
+            <span class="block-label" style="margin:0">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              AI 识别食材
+            </span>
+            <span id="itemCount" class="count-chip">0 件</span>
+          </div>
+          <div id="previewTable"></div>
+        </div>
+
+        <div class="action-row">
+          <button id="parseBtn" class="btn btn-ghost">预览识别</button>
+          <button id="startBtn" class="btn btn-primary">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            开始购物
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ── Right: Log ── -->
+      <div class="col">
+
+        <div class="log-label-row">
+          <div class="block-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            运行日志
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span id="statusDot" class="status-dot idle"></span>
+            <button id="clearLogBtn" class="btn btn-ghost btn-xs">清空</button>
+          </div>
+        </div>
+
+        <!-- Login callout -->
+        <div id="loginBanner" class="callout callout-orange" style="display:none">
+          <div class="callout-body">
+            <span class="callout-icon">🔑</span>
+            <div>
+              <div class="callout-title">等待登录</div>
+              <div class="callout-text">请在弹出的浏览器中完成 Morrisons 登录，完成后点击继续</div>
+            </div>
+          </div>
+          <button id="continueBtn" class="btn btn-orange">继续 →</button>
+        </div>
+
+        <div id="logContainer" class="log-pane">
+          <span class="log-empty">等待启动...</span>
+        </div>
+
+        <!-- Done summary -->
+        <div id="summaryBar" class="callout callout-green" style="display:none">
+          <span class="callout-icon">✅</span>
+          <span id="summaryText"></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
