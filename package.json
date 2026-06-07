@@ -3,15 +3,47 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Grocery shopping agent powered by Stagehand + Gemini",
-  "main": "server.js",
+  "main": "electron-main.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "electron": "electron .",
+    "build:mac": "electron-builder --mac"
   },
   "dependencies": {
     "@browserbasehq/stagehand": "^3.0.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.0",
     "express": "^4.19.0"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.jacksu.shopping-agent",
+    "productName": "Shopping Agent",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "universal"
+          ]
+        }
+      ]
+    },
+    "files": [
+      "**/*",
+      "!.env",
+      "!.git/**",
+      "!*.md"
+    ],
+    "asarUnpack": [
+      "node_modules/@browserbasehq/**",
+      "node_modules/playwright/**",
+      "node_modules/playwright-core/**"
+    ]
   }
 }

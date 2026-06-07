@@ -177,5 +177,17 @@ app.post('/api/shop/continue/:jobId', (req, res) => {
   res.json({ ok: true });
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`\n购物 Agent 服务已启动: http://localhost:${PORT}\n`));
+// ─── Start server ─────────────────────────────────────────────────────────────
+export function startServer(port = process.env.PORT || 3000) {
+  return new Promise((resolve) => {
+    app.listen(port, () => {
+      console.log(`\n购物 Agent 服务已启动: http://localhost:${port}\n`);
+      resolve(Number(port));
+    });
+  });
+}
+
+// Auto-start when run directly: node server.js / npm start
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  startServer();
+}
