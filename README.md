@@ -1,5 +1,7 @@
 # Shopping Agent
 
+<img width="1053" height="797" alt="banner" src="https://github.com/user-attachments/assets/6ca096ee-76d4-473b-92fa-48b65f4a1343"/>
+
 A grocery shopping agent that reads a Chinese weekly meal-plan table, extracts ingredients with Gemini AI, then autonomously adds them to a Morrisons online basket using Stagehand browser automation.
 
 ## How it works
