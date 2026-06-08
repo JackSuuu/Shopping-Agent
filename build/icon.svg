@@ -1,0 +1,54 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="38%" cy="32%" r="72%">
+      <stop offset="0%" stop-color="#232323"/>
+      <stop offset="100%" stop-color="#181818"/>
+    </radialGradient>
+    <linearGradient id="cartGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5ba4d2"/>
+      <stop offset="100%" stop-color="#2d6fa5"/>
+    </linearGradient>
+    <linearGradient id="cartShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="rgba(255,255,255,0.12)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+
+  <!-- Cart basket body -->
+  <path d="M 192 292 L 664 292 L 664 692 Q 664 714 642 714 L 214 714 Q 192 714 192 692 Z"
+        fill="url(#cartGrad)"/>
+
+  <!-- Subtle shine overlay on basket -->
+  <path d="M 192 292 L 664 292 L 664 480 L 192 480 Z"
+        fill="url(#cartShine)" clip-path="url(#basketClip)"/>
+  <clipPath id="basketClip">
+    <path d="M 192 292 L 664 292 L 664 692 Q 664 714 642 714 L 214 714 Q 192 714 192 692 Z"/>
+  </clipPath>
+
+  <!-- Handle: horizontal bar right then L-curve down -->
+  <path d="M 664 316 L 836 316 L 836 514"
+        stroke="#529cca" stroke-width="46"
+        stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Axle bar -->
+  <rect x="252" y="706" width="358" height="18" rx="9" fill="#2a5a82"/>
+
+  <!-- Left wheel -->
+  <circle cx="268" cy="778" r="62" fill="#1c374e" stroke="#529cca" stroke-width="18"/>
+  <circle cx="268" cy="778" r="22" fill="#529cca" opacity="0.8"/>
+
+  <!-- Right wheel -->
+  <circle cx="594" cy="778" r="62" fill="#1c374e" stroke="#529cca" stroke-width="18"/>
+  <circle cx="594" cy="778" r="22" fill="#529cca" opacity="0.8"/>
+
+  <!-- AI sparkle — 4-pointed smooth star, top-right area -->
+  <g transform="translate(748, 222)">
+    <path d="M 0,-46 C 7,-15 15,-7 46,0 C 15,7 7,15 0,46 C -7,15 -15,7 -46,0 C -15,-7 -7,-15 0,-46 Z"
+          fill="#93c5fd" opacity="0.92"/>
+    <!-- tiny satellite dot -->
+    <circle cx="58" cy="-52" r="11" fill="#93c5fd" opacity="0.5"/>
+  </g>
+</svg>

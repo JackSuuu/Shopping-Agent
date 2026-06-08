@@ -1,4 +1,4 @@
-# Shopping Agent
+# Trolley
 
 <img width="1053" height="797" alt="banner" src="https://github.com/user-attachments/assets/6ca096ee-76d4-473b-92fa-48b65f4a1343"/>
 
@@ -82,7 +82,7 @@ npm run build:mac
 The output file will be at:
 
 ```
-dist/Shopping Agent-1.0.0-universal.dmg
+dist/Trolley-1.0.0-universal.dmg
 ```
 
 Open the `.dmg`, drag **Shopping Agent** to `/Applications`, and launch it like any Mac app.
@@ -92,7 +92,7 @@ Open the `.dmg`, drag **Shopping Agent** to `/Applications`, and launch it like 
 The `.env` file is not bundled for security. Create it once at:
 
 ```
-~/Library/Application Support/Shopping Agent/.env
+~/Library/Application Support/Trolley/.env
 ```
 
 ```

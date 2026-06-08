@@ -1,3 +1,8 @@
+/* ── Electron: traffic-light padding + drag region ──────────────────────── */
+if (navigator.userAgent.includes('Electron')) {
+  document.body.classList.add('is-electron');
+}
+
 /* ── State ─────────────────────────────────────────────────────────────── */
 let currentJobId = null;
 let eventSource  = null;

@@ -1,13 +1,14 @@
 {
-  "name": "my-grocery-agent",
+  "name": "trolley",
   "version": "1.0.0",
   "type": "module",
-  "description": "Grocery shopping agent powered by Stagehand + Gemini",
+  "description": "AI grocery shopping agent powered by Stagehand + Gemini",
   "main": "electron-main.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node --watch server.js",
     "electron": "electron .",
+    "generate-icon": "node scripts/generate-icon.js",
     "build:mac": "electron-builder --mac"
   },
   "dependencies": {
@@ -18,27 +19,23 @@
   },
   "devDependencies": {
     "electron": "^33.4.11",
-    "electron-builder": "^25.1.8"
+    "electron-builder": "^25.1.8",
+    "sharp": "^0.34.5"
   },
   "build": {
-    "appId": "com.jacksu.shopping-agent",
-    "productName": "Shopping Agent",
+    "appId": "com.jacksu.trolley",
+    "productName": "Trolley",
     "mac": {
       "category": "public.app-category.productivity",
-      "target": [
-        {
-          "target": "dmg",
-          "arch": [
-            "universal"
-          ]
-        }
-      ]
+      "icon": "build/icon.icns",
+      "target": [{ "target": "dmg", "arch": ["universal"] }]
     },
     "files": [
       "**/*",
       "!.env",
       "!.git/**",
-      "!*.md"
+      "!*.md",
+      "!scripts/**"
     ],
     "asarUnpack": [
       "node_modules/@browserbasehq/**",

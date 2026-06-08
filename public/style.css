@@ -47,7 +47,12 @@ html, body {
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
+  /* Electron: make the whole bar draggable to move the window */
+  -webkit-app-region: drag;
 }
+
+/* macOS traffic-light buttons occupy ~72 px on the left */
+.is-electron .topbar { padding-left: 80px; }
 
 .topbar-breadcrumb {
   display: flex;
@@ -56,6 +61,8 @@ html, body {
   font-size: 13px;
   color: var(--text-muted);
   user-select: none;
+  /* opt out of drag so the text renders normally */
+  -webkit-app-region: no-drag;
 }
 .topbar-breadcrumb svg { flex-shrink: 0; opacity: 0.6; }
 
@@ -63,6 +70,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 6px;
+  -webkit-app-region: no-drag;
 }
 
 .tech-pill {
